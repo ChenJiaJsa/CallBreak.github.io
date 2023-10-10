@@ -338,10 +338,10 @@
         }
         if(contentType == 'text'){
             console.log(contentType);
-            let x =(cc.view.getFrameSize().width)+'px'
+            let x =(document.body.clientWidth)+'px'
             this.advertiseDiv.style.height = '63px';
             this.advertiseDiv.style.width = x ;
-            let y =(cc.view.getFrameSize().height - 80)+'px'
+            let y =(document.body.clientHeight - 80)+'px'
             this.advertiseDiv.style.top = y;
         }else{
             this.advertiseDiv.style.height = '';
