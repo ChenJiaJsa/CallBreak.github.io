@@ -1,0 +1,51 @@
+[
+  1,
+  [
+    "0dW5O+nohCdKOos+l/zICY"
+  ],
+  [
+    "_textureSetter"
+  ],
+  [
+    "cc.SpriteFrame"
+  ],
+  0,
+  [
+    {
+      "name": "Button_zi",
+      "rect": [
+        1,
+        1,
+        38,
+        29
+      ],
+      "offset": [
+        0,
+        0.5
+      ],
+      "originalSize": [
+        40,
+        32
+      ],
+      "capInsets": [
+        6,
+        6,
+        6,
+        6
+      ]
+    }
+  ],
+  [
+    0
+  ],
+  0,
+  [
+    0
+  ],
+  [
+    0
+  ],
+  [
+    0
+  ]
+]

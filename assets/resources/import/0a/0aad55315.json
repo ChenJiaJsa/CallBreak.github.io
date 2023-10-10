@@ -1,0 +1,96 @@
+[
+  1,
+  [
+    "b8of4ORfVH/5AiT6pCEmTh",
+    "93IEqXdLtGqr9Leekh8iQx"
+  ],
+  [
+    "_textureSetter"
+  ],
+  [
+    "cc.SpriteFrame"
+  ],
+  0,
+  [
+    [
+      [
+        {
+          "name": "bg_lvyuan",
+          "rect": [
+            0,
+            0,
+            18,
+            18
+          ],
+          "offset": [
+            0,
+            0
+          ],
+          "originalSize": [
+            18,
+            18
+          ],
+          "capInsets": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      [
+        0
+      ],
+      0,
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ]
+    ],
+    [
+      [
+        {
+          "name": "bg_baiyuan",
+          "rect": [
+            0,
+            0,
+            26,
+            26
+          ],
+          "offset": [
+            0,
+            0
+          ],
+          "originalSize": [
+            26,
+            26
+          ],
+          "capInsets": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      [
+        0
+      ],
+      0,
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        1
+      ]
+    ]
+  ]
+]

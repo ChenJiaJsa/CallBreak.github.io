@@ -1,0 +1,35 @@
+[
+  1,
+  0,
+  0,
+  [
+    [
+      "cc.TextAsset",
+      [
+        "_name",
+        "text"
+      ],
+      1
+    ]
+  ],
+  [
+    [
+      0,
+      0,
+      1,
+      3
+    ]
+  ],
+  [
+    [
+      0,
+      "UIFormInfo",
+      "#\t界面表\t\t\t\t\r\n#\tId\t\tAssetName\tModuleName\tUIGroupName\r\n#\tint\t\tstring\tstring\tstring\r\n#\tid\t策划备注\t界面预制体 界面脚本名\t模块\t层级  Default|Middle|Front|Top|TopTop\r\n\t10001\t\tHomeForm\tHome\tDefault\r\n\t10002\t\tFakeGameForm\tHome\tDefault\r\n\t10003\t\tHeadSelectForm\tHome\tMiddle\r\n\t10004\t\tFreeCoinsForm\tHome\tMiddle\r\n\t10005\t\tTurntableForm\tHome\tMiddle\r\n\t10006\t\tSettingForm\tHome\tMiddle\r\n\t10007\t\tGiveScoreForm\tHome\tMiddle\r\n\t10008\t\tSelectRoomForm\tHome\tMiddle\r\n\t10009\t\tWifiOpenForm\tHome\tMiddle\r\n\t10010\t\tBidModelStartForm\tHome\tMiddle\r\n\t10011\t\tBidModelHelpForm\tHome\tMiddle\r\n\t20001\t\tGameForm\tGame\tDefault\r\n\t20002\t\tExitForm\tGame\tMiddle\r\n\t20003\t\tLevelUpForm\tGame\tMiddle\r\n\t20004\t\tSeeCardAdForm\tGame\tMiddle\r\n\t20005\t\tSeeCardBuyForm\tGame\tMiddle\r\n\t20006\t\tBidForm\tGame\tDefault\r\n\t20007\t\tScoreBoardForm\tGame\tDefault\r\n\t30001\t\tRewardForm\tCommon\tTop\r\n\t30002\t\tTipsForm\tCommon\tTopTop\r\n\t30003\t\tNFBannerForm\tCommon\tTopTop\r\n\t30004\t\tNFNativeBannerForm\tCommon\tTopTop\r\n\t40001\t\tShopForm\tShop\tMiddle\r\n\t40002\t\tShopPreviewForm\tShop\tMiddle\r\n\t40003\t\tShopResultForm\tShop\tTop\r\n\t40004\t\tShopFreeTrialForm\tShop\tTop\r\n\t40005\t\tShopDiscountForm\tShop\tMiddle\r\n"
+    ]
+  ],
+  0,
+  0,
+  [],
+  [],
+  []
+]

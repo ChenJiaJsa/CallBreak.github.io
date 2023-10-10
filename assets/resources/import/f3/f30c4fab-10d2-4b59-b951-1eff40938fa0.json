@@ -1,0 +1,51 @@
+[
+  1,
+  [
+    "1aLslFVx1BRLfTxmrvFuvP"
+  ],
+  [
+    "_textureSetter"
+  ],
+  [
+    "cc.SpriteFrame"
+  ],
+  0,
+  [
+    {
+      "name": "ui_icon_game_guanggao_1",
+      "rect": [
+        0,
+        0,
+        37,
+        28
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        37,
+        28
+      ],
+      "capInsets": [
+        13,
+        13,
+        13,
+        13
+      ]
+    }
+  ],
+  [
+    0
+  ],
+  0,
+  [
+    0
+  ],
+  [
+    0
+  ],
+  [
+    0
+  ]
+]

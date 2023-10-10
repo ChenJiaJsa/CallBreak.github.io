@@ -1,0 +1,51 @@
+[
+  1,
+  [
+    "0cueMGeTFA9aBg2CivrVxX"
+  ],
+  [
+    "_textureSetter"
+  ],
+  [
+    "cc.SpriteFrame"
+  ],
+  0,
+  [
+    {
+      "name": "bg_rukou_diban",
+      "rect": [
+        0,
+        1,
+        27,
+        26
+      ],
+      "offset": [
+        -0.5,
+        0
+      ],
+      "originalSize": [
+        28,
+        28
+      ],
+      "capInsets": [
+        7.5,
+        7,
+        7.5,
+        7
+      ]
+    }
+  ],
+  [
+    0
+  ],
+  0,
+  [
+    0
+  ],
+  [
+    0
+  ],
+  [
+    0
+  ]
+]

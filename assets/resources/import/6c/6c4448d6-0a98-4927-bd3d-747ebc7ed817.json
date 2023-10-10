@@ -1,0 +1,51 @@
+[
+  1,
+  [
+    "9byZU1KsFMA6j2SC2UMeYM"
+  ],
+  [
+    "_textureSetter"
+  ],
+  [
+    "cc.SpriteFrame"
+  ],
+  0,
+  [
+    {
+      "name": "icon_huawen1",
+      "rect": [
+        3,
+        2,
+        54,
+        55
+      ],
+      "offset": [
+        0,
+        0.5
+      ],
+      "originalSize": [
+        60,
+        60
+      ],
+      "capInsets": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  [
+    0
+  ],
+  0,
+  [
+    0
+  ],
+  [
+    0
+  ],
+  [
+    0
+  ]
+]

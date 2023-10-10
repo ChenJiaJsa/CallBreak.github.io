@@ -1,0 +1,51 @@
+[
+  1,
+  [
+    "3ey3ZYRaJEAYJpj16jAgYh"
+  ],
+  [
+    "_textureSetter"
+  ],
+  [
+    "cc.SpriteFrame"
+  ],
+  0,
+  [
+    {
+      "name": "icon_cj8",
+      "rect": [
+        1,
+        0,
+        174,
+        99
+      ],
+      "offset": [
+        0,
+        0.5
+      ],
+      "originalSize": [
+        176,
+        100
+      ],
+      "capInsets": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  [
+    0
+  ],
+  0,
+  [
+    0
+  ],
+  [
+    0
+  ],
+  [
+    0
+  ]
+]

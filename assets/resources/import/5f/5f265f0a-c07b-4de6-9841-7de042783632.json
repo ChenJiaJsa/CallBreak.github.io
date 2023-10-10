@@ -1,0 +1,51 @@
+[
+  1,
+  [
+    "91dDxLPmVGGKLXcE9HA/TT"
+  ],
+  [
+    "_textureSetter"
+  ],
+  [
+    "cc.SpriteFrame"
+  ],
+  0,
+  [
+    {
+      "name": "Button_xuanze2",
+      "rect": [
+        0,
+        1,
+        36,
+        21
+      ],
+      "offset": [
+        0,
+        0.5
+      ],
+      "originalSize": [
+        36,
+        24
+      ],
+      "capInsets": [
+        10,
+        10,
+        10,
+        0
+      ]
+    }
+  ],
+  [
+    0
+  ],
+  0,
+  [
+    0
+  ],
+  [
+    0
+  ],
+  [
+    0
+  ]
+]

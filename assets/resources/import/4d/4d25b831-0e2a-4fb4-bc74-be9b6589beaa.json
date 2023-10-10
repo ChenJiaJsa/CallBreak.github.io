@@ -1,0 +1,51 @@
+[
+  1,
+  [
+    "57WKy3s9BNZr8s5onTPGOQ"
+  ],
+  [
+    "_textureSetter"
+  ],
+  [
+    "cc.SpriteFrame"
+  ],
+  0,
+  [
+    {
+      "name": "icon_liwu_1",
+      "rect": [
+        16,
+        35,
+        135,
+        98
+      ],
+      "offset": [
+        -0.5,
+        0
+      ],
+      "originalSize": [
+        168,
+        168
+      ],
+      "capInsets": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  [
+    0
+  ],
+  0,
+  [
+    0
+  ],
+  [
+    0
+  ],
+  [
+    0
+  ]
+]

@@ -1,0 +1,51 @@
+[
+  1,
+  [
+    "d1wyWyaFNIjqdeQUfMQfSB"
+  ],
+  [
+    "_textureSetter"
+  ],
+  [
+    "cc.SpriteFrame"
+  ],
+  0,
+  [
+    {
+      "name": "ui_guanzi_icon_2",
+      "rect": [
+        5,
+        1,
+        85,
+        86
+      ],
+      "offset": [
+        -2,
+        2
+      ],
+      "originalSize": [
+        99,
+        92
+      ],
+      "capInsets": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  [
+    0
+  ],
+  0,
+  [
+    0
+  ],
+  [
+    0
+  ],
+  [
+    0
+  ]
+]

@@ -1,0 +1,35 @@
+[
+  1,
+  0,
+  0,
+  [
+    [
+      "cc.TextAsset",
+      [
+        "_name",
+        "text"
+      ],
+      1
+    ]
+  ],
+  [
+    [
+      0,
+      0,
+      1,
+      3
+    ]
+  ],
+  [
+    [
+      0,
+      "SoundInfo",
+      "#\t声音配置表\t\t\t\t\t\t\r\n#\tId\t\tAssetName\tVolume\tType\tPriority\tLoop\r\n#\tint\t\tstring\tfloat\tint\tint\tbool\r\n#\t声音编号\t策划备注\t资源名称\t音量(0~1)\t音效类型1.音乐 2.音效\t优先级（默认0，128最高，-128最低）\t是否循环\r\n\t10001\t主界面bgm\thomebgm\t1\t1\t0\tTRUE\r\n\t10002\t游戏bgm\tgamebgm\t1\t1\t0\tTRUE\r\n\t1\t通用按键音\tclick\t1\t2\t0\tFALSE\r\n\t2\t通用窗口弹出音\tpopup\t1\t2\t0\tFALSE\r\n\t3\t发牌音效\tfapai\t1\t2\t0\tFALSE\r\n\t4\t出牌音效\tchupai\t1\t2\t0\tFALSE\r\n\t5\t其他玩家收牌\tshoupai1\t1\t2\t0\tFALSE\r\n\t6\t我方收牌音效\tshoupai2\t1\t2\t0\tFALSE\r\n\t7\t下注弹窗弹出音效\tring\t1\t2\t0\tFALSE\r\n\t8\t小局结算\tending\t1\t2\t0\tFALSE\r\n\t9\t任意玩家出黑桃牌播放\tspadering\t1\t2\t0\tFALSE\r\n\t10\t转盘转动1格\tspin\t1\t2\t0\tFALSE\r\n\t11\t奖励/购买发放\tget\t1\t2\t0\tFALSE\r\n\t12\t升级\tlevelup\t1\t2\t0\tFALSE\r\n\t13\t游戏结束\tvictory\t1\t2\t0\tFALSE\r\n"
+    ]
+  ],
+  0,
+  0,
+  [],
+  [],
+  []
+]

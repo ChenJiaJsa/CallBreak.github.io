@@ -1,0 +1,72 @@
+[
+  1,
+  0,
+  0,
+  [
+    [
+      "cc.JsonAsset",
+      [
+        "_name",
+        "json"
+      ],
+      1
+    ]
+  ],
+  [
+    [
+      0,
+      0,
+      1,
+      3
+    ]
+  ],
+  [
+    [
+      0,
+      "DefaultConfig",
+      [
+        {
+          "Id": "Match_time_a",
+          "Value": "2"
+        },
+        {
+          "Id": "Match_time_b",
+          "Value": "4"
+        },
+        {
+          "Id": "Mode_entrance_a",
+          "Value": "1500"
+        },
+        {
+          "Id": "Mode_entrance_cd",
+          "Value": "300"
+        },
+        {
+          "Id": "Bid_time_b",
+          "Value": "2"
+        },
+        {
+          "Id": "Dealer_time_b",
+          "Value": "3"
+        },
+        {
+          "Id": "Player_time_b",
+          "Value": "4"
+        },
+        {
+          "Id": "Change_bot_odds1",
+          "Value": "30"
+        },
+        {
+          "Id": "Change_bot_odds2",
+          "Value": "30"
+        }
+      ]
+    ]
+  ],
+  0,
+  0,
+  [],
+  [],
+  []
+]

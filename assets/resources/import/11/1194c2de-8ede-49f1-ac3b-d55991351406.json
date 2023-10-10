@@ -1,0 +1,51 @@
+[
+  1,
+  [
+    "14O+DaKFRDW7AOx2kokyBG"
+  ],
+  [
+    "_textureSetter"
+  ],
+  [
+    "cc.SpriteFrame"
+  ],
+  0,
+  [
+    {
+      "name": "ui_bg_goumai_3",
+      "rect": [
+        0,
+        0,
+        29,
+        119
+      ],
+      "offset": [
+        0,
+        0
+      ],
+      "originalSize": [
+        29,
+        119
+      ],
+      "capInsets": [
+        7,
+        103,
+        6,
+        7
+      ]
+    }
+  ],
+  [
+    0
+  ],
+  0,
+  [
+    0
+  ],
+  [
+    0
+  ],
+  [
+    0
+  ]
+]
