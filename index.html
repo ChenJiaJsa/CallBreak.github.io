@@ -24,17 +24,74 @@
   <button style="width: 100px; height: 70px;" onclick="videoClick()">视频</button>
   <button style="width: 100px; height: 70px;" onclick="imageClick()">插屏</button>
   <button style="width: 100px; height: 70px;" onclick="textClick()">banner</button>
-
-  <div id="GameDiv" style="width:500px; height: 888px;">
-    <canvas id="GameCanvas" width="500" height="888"></canvas>
-    <div id="splash">
-      <div class="progress-bar stripes">
-        <span style="width: 0%"></span>
-      </div>
-    </div>
-  </div>
-  
 </body>
+
+<script type="text/javascript" charset="utf-8">
+    //向head标签添加link标签
+    var canvasW = 960;
+    var canvasH = 540;
+
+    function includeLinkStyle(url) {
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.type = "text/css";
+      link.href = url;
+      document.getElementsByTagName("head")[0].appendChild(link);
+    }
+
+    var content = document.getElementById("bodys");
+    if(/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) 
+    {
+      //移动端设备
+      content.innerHTML += `<canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="0"></canvas>
+      <div id="splash">
+        <div class="progress-bar stripes">
+          <span style="width: 0%"></span>
+        </div>
+      </div>`
+      includeLinkStyle('style-mobile.css')
+    } else 
+    {
+      //pc端
+      content.innerHTML +=`<div id="GameDiv">
+          <button id="googleBtn">
+            <img src="./icon_google2.png" style="width:310px">
+          </button>
+          <canvas id="GameCanvas" width="1280" height="720"></canvas>
+          <div id="splash">
+            <div class="progress-bar stripes">
+              <span style="width: 0%"></span>
+            </div>
+          </div>
+        </div>`
+      includeLinkStyle('style-desktop.css');
+      var GameDiv = document.getElementById("GameDiv");
+      GameDiv.style.top = (document.documentElement.clientHeight - canvasH) / 2 + "px";
+      GameDiv.style.left = (document.documentElement.clientWidth - canvasW) / 2 + "px";
+
+      var googleBtn = document.getElementById("googleBtn");
+      googleBtn.style.position = "relative";
+      googleBtn.style.bottom = -canvasH + "px";
+      googleBtn.style.left = "345px";
+      googleBtn.style.padding = 0;
+      googleBtn.style.background = "no-repeat";
+      googleBtn.style.border = 0;
+      googleBtn.addEventListener("click", function() {
+        // 在此处编写按钮点击事件的处理逻辑
+        if(window["onGoogleClick"])
+        {
+          window["onGoogleClick"]();
+        }
+      });
+    }
+
+    window["onGoogleClick"] = ()=>{
+      window.open("https://callbreak.sng.link/D7jwm/rb92");
+    }
+</script>
+
+
+  
 <script type="text/javascript" charset="utf-8">
     function videoClick(){
       show(3);
