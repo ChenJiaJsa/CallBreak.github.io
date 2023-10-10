@@ -248,7 +248,7 @@
     function onAdEvent(adEvent) {
         // 从事件检索广告。有些事件（例如 ALL_ADS_COMPLETED）
         // 没有相关联的广告对象。
-        let ad = adEvent.getAd();
+        let ad = adEvent.getAd()
         switch (adEvent.type) {
             case google.ima.AdEvent.Type.LOADED:
                 // 这是为广告发送的第一个事件 - 可以
