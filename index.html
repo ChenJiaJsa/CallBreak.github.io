@@ -27,25 +27,22 @@
     {
       //移动端设备
       content.innerHTML += `
-      <div id="GameDiv">
-        <div id = "chi"></div>
-      </div>
+
       <button style="width: 100px; height: 70px;" onclick="videoClick()">视频</button>
       <button style="width: 100px; height: 70px;" onclick="imageClick()">插屏</button>
       <button style="width: 100px; height: 70px;" onclick="textClick()">banner</button>
       <button style="width: 100px; height: 70px;" onclick="CloseClick()">关闭banner</button>
      
-      
+      <div id="GameDiv"></div>
       `
       includeLinkStyle('style-mobile.css');
-        // var chi = document.getElementById("chi");
-        // chi.style.width=document.documentElement.clientWidth;
-        // chi.style.height=document.documentElement.clientHeight;
-      
-          var GameDiv = document.getElementById("GameDiv");
-          GameDiv.style.backgroundColor = "#f00";
-          GameDiv.style.top = 0
-          GameDiv.style.left = 0
+      var GameDiv = document.getElementById("GameDiv");
+      GameDiv.style.backgroundColor = "#f00";
+      GameDiv.style.position = "relative"
+      GameDiv.style.top = 0
+      GameDiv.style.left = 0
+      GameDiv.style.width = 100 + "%"
+      GameDiv.style.height = 100 + "%"
     } else 
     {
         var canvasW = 960;
