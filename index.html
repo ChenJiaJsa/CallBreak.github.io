@@ -2,28 +2,17 @@
 <html>
 <head>
   <meta charset="utf-8">
-
   <title>Callbreak</title>
-
-
-
-
-  <!-- <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="msapplication-tap-highlight" content="no">
-  <meta name="screen-orientation" content="landscape"/>
-  <meta name="x5-orientation" content="landscape">
-  <meta name="x5-page-mode" content="app"> -->
-
- 
-
-<script type="text/javascript" src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
-<link rel="icon" href="favicon.ico"/>
+  <script type="text/javascript" src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+  <link rel="icon" href="favicon.ico"/>
 </head>
+
 <body id = "bodys">
-  <button style="width: 100px; height: 70px;" onclick="videoClick()">视频</button>
-  <button style="width: 100px; height: 70px;" onclick="imageClick()">插屏</button>
-  <button style="width: 100px; height: 70px;" onclick="textClick()">banner</button>
+    <button style="width: 100px; height: 70px;" onclick="videoClick()">视频</button>
+    <button style="width: 100px; height: 70px;" onclick="imageClick()">插屏</button>
+    <button style="width: 100px; height: 70px;" onclick="textClick()">banner</button>
+
+    
 </body>
 
 <script type="text/javascript" charset="utf-8">
@@ -91,7 +80,7 @@
 </script>
 
 
-  
+
 <script type="text/javascript" charset="utf-8">
     function videoClick(){
       show(3);
@@ -110,19 +99,6 @@
         let googletag = window['googletag'];
         googletag.cmd = googletag.cmd || [];
 
-        // (function() {
-        //     let gads = document.createElement('script');
-        //     gads.type = 'text/javascript';
-        //     gads.src = 'https://s0.2mdn.net/instream/html5/ima3.js';//'https://imasdk.googleapis.com/js/sdkloader/ima3.js'
-        //     let node = document.getElementsByTagName('script')[0];
-        //     node.parentNode.insertBefore(gads, node);
-        //     // gads = document.createElement('script');
-        //     // gads.async = true;
-        //     // gads.type = 'text/javascript';
-        //     // gads.src = 'https://www.googletagservices.com/tag/js/gpt.js';
-        //     // node.parentNode.insertBefore(gads, node);
-        // })();
-
         this.advertiseDiv = document.getElementById('advertise');
         if (this.advertiseDiv == null) {
             this.advertiseDiv = document.createElement('div');
@@ -140,19 +116,19 @@
         }
 
         this.videoContent = document.createElement('video');
-
         let contentDiv = document.createElement('div');
         contentDiv.id = 'contentDiv';
         contentDiv.style.display = 'none';
         contentDiv.appendChild(this.videoContent);
+        this.advertiseDiv.appendChild(contentDiv);
 
         this.adContainerDiv = document.createElement('div');
         this.adContainerDiv.id = 'adContainerDiv';
         this.adContainerDiv.style.position = 'absolute';
         this.adContainerDiv.style.left = '0px';
         this.adContainerDiv.style.top = '0px';
-
-        this.advertiseDiv.appendChild(contentDiv);
+        this.advertiseDiv.style.bottom = '0px';
+        this.advertiseDiv.style.right = '0px';
         this.advertiseDiv.appendChild(this.adContainerDiv);
     }
     init();
@@ -166,8 +142,8 @@
             //存在激励视频或插屏时不显示激励视频或插屏
             return;
         }
-        let width = document.body.clientWidth
-        let height = document.body.clientHeight;
+        let width = this.advertiseDiv.width;
+        let height = this.advertiseDiv.height;;
         this.mType = type;
         switch(type){
             case 1:
@@ -317,9 +293,9 @@
                 
                 console.log("===========");
                 console.log(ad);
-                console.log('ad.g.contentType:' + ad.data.contentType);
-                var contentType = ad.data.contentType;
-                var height = ad.data.height;
+                console.log('ad.g.contentType:' + ad.h.contentType);
+                var contentType = ad.h.contentType;
+                var height = ad.h.height;
 
                 this.setupUIForAds(contentType, height);
                 break;
@@ -395,10 +371,10 @@
         }
         if(contentType == 'text'){
             console.log(contentType);
-            let x =(document.body.clientWidth)+'px'
+            let x =(cc.view.getFrameSize().width)+'px'
             this.advertiseDiv.style.height = '63px';
             this.advertiseDiv.style.width = x ;
-            let y =(document.body.clientHeight - 80)+'px'
+            let y =(cc.view.getFrameSize().height - 80)+'px'
             this.advertiseDiv.style.top = y;
         }else{
             this.advertiseDiv.style.height = '';
@@ -414,9 +390,9 @@
             this.preloadedRewardedVideoCallbackObj = null;
         }
         this.advertiseDiv.style.visibility = 'hidden';
-       // if(adErrorEvent && this.mType > 0){
-        //     this.show(1);
-        // }
+        if(adErrorEvent && this.mType > 0){
+            this.show(1);
+        }
         this.mType = 0;
     }
 
