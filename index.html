@@ -11,6 +11,8 @@
     <button style="width: 100px; height: 70px;" onclick="videoClick()">视频</button>
     <button style="width: 100px; height: 70px;" onclick="imageClick()">插屏</button>
     <button style="width: 100px; height: 70px;" onclick="textClick()">banner</button>
+    <button style="width: 100px; height: 70px;" onclick="CloseClick()">关闭banner</button>
+
 </body>
 
 <script type="text/javascript" charset="utf-8">
@@ -79,10 +81,45 @@
 
 
 <script type="text/javascript" charset="utf-8">
- 
+    
+    const  CallBackStatus = {
+    /** 成功 */
+    CALL_SUCCESS : 1,
+    /** 失败 */
+    CALL_FALIED : 2,
+    /** 确认 */
+    CALL_SURE: 3,
+    /** 取消、跳过 */
+    CALL_CANCEL: 4,
+    /** 前往 */
+    CALL_GO: 5,
+    /** 加载 */
+    CALL_LOADFALIED: 6,
+    /** 错误 */
+    CALL_ERROR: 7,
+    /** 开始播放 展示 */
+    CALL_AD_SHOW: 8,
+    /** 点击广告 */
+    CALL_AD_CLICK: 9,
+    /** 广告已填充 */
+    CALL_AD_LOADED: 10,
+    /** 开始 */
+    CALL_START: 11,
+    /** 数据更新 */
+    CALL_UPDATE: 12,
+    /** 无效（奖励） */
+    CALL_INVALID: 13,
+    /** 跳过（奖励） */
+    CALL_SKIPPED: 14,
+    /** 关闭 */
+    CALL_CLOSE: 15,
+}
+
 
     function videoClick(){
-      ShowAd(3);
+      ShowAd(3,"Video",()=>{
+        console.log("奖励奖励")
+      });
     }
 
     function imageClick(){
@@ -92,7 +129,11 @@
 
     function textClick(){
       ShowAd(1);
+    }
 
+    function CloseClick()
+    {
+        CloseAd()
     }
 
     var VideoUrl = "https://googleads.g.doubleclick.net/pagead/ads?ad_type=video&client=ca-games-pub-6877195875453822&description_url=https%3A%2F%2Fcb1.callbreakmaster.fun%2Fh5%2Fcb1%2Findex.html&videoad_start_delay=0&max_ad_duration=30000"
@@ -105,6 +146,8 @@
     var m_GameDiv = null;
     // 当前播放类型
     var m_Type = 0;
+    // 广告id
+    var m_placeId = "";
     // 当前广告地址
     var m_adTagUrl = "";
     
@@ -114,14 +157,19 @@
     var m_adsLoader = null;
     var m_adsManager = null;
 
-    // 定时器
-    var m_intervalTimer = null;
     // 高度
     var m_Height = 0;
     var m_Width = 0;
 
+    // 记录是否播放banner中
+    var m_isShowBanner;
+
+    // 广告回调
+    var m_AdCallback = null;
+
     function Init() {
         // 创建广告容器
+        m_AdCallback = {};
         m_AdContainer = document.getElementById('AdContainer');
         if (m_AdContainer == null) {
             m_AdContainer = document.createElement('div');
@@ -138,17 +186,22 @@
     }
     Init();
 
+   
+
 
     // 播放广告
-    function ShowAd(type,placeId)
+    function ShowAd(type,placeId = "", func = null)
     {
         // type一样就表示还在播放中
         if(m_Type == type)return;
         m_Type = type;
+        m_placeId = placeId;
+        m_AdCallback[m_placeId] = func;
         m_adTagUrl = ""
         switch(type)
         {
             case 1:
+                m_isShowBanner = true;
                 m_AdContainer.style.backgroundColor = 'transparent';
                 m_adTagUrl = TextBannerUrl;
             break;
@@ -164,14 +217,14 @@
         if (window['google']) 
         {
             // 开始提出广告请求
-            requestAds();
+            RequestAds();
         }else{
-            setupUIForContent();
+            OnVideoAdReward(CallBackStatus.CALL_FALIED);
         }
     }
 
     // 开启请求广告
-    function requestAds()
+    function RequestAds()
     {
         if(m_AdDisplayContainer) 
         {
@@ -180,12 +233,12 @@
                 // 移除监听
                 m_adsLoader.removeEventListener(
                     window['google'].ima.AdsManagerLoadedEvent.Type.ADS_MANAGER_LOADED,
-                    onAdsManagerLoaded.bind(this),
+                    OnAdsManagerLoaded.bind(this),
                     false
                 );
                 m_adsLoader.removeEventListener(
                     window['google'].ima.AdErrorEvent.Type.AD_ERROR,
-                    onAdError.bind(this),
+                    OnAdError.bind(this),
                 false);
             }
             m_AdDisplayContainer.destroy();
@@ -199,11 +252,11 @@
         m_adsLoader = new window['google'].ima.AdsLoader(m_AdDisplayContainer);
         m_adsLoader.addEventListener(
             window['google'].ima.AdsManagerLoadedEvent.Type.ADS_MANAGER_LOADED,
-            onAdsManagerLoaded.bind(this),
+            OnAdsManagerLoaded.bind(this),
             false);
         m_adsLoader.addEventListener(
             window['google'].ima.AdErrorEvent.Type.AD_ERROR,
-            onAdError.bind(this),
+            OnAdError.bind(this),
         false);
 
         // 提出视频广告请求。
@@ -230,28 +283,28 @@
     }
 
 
-    function onAdsManagerLoaded(adsManagerLoadedEvent) {
+    function OnAdsManagerLoaded(adsManagerLoadedEvent) {
         // 获取广告管理器。
         m_adsManager = adsManagerLoadedEvent.getAdsManager(m_AdContainer);  // 应被设置为内容视频元素
         let ima = window['google'].ima;
         if(m_adsManager)
         {
             // 为所需事件添加监听器。
-            m_adsManager.addEventListener(ima.AdErrorEvent.Type.AD_ERROR,onAdError.bind(this));
-            m_adsManager.addEventListener(ima.AdEvent.Type.CONTENT_PAUSE_REQUESTED,onContentPauseRequested.bind(this));
-            m_adsManager.addEventListener(ima.AdEvent.Type.CONTENT_RESUME_REQUESTED,onContentResumeRequested.bind(this));
-            m_adsManager.addEventListener(ima.AdEvent.Type.ALL_ADS_COMPLETED,onAdEvent.bind(this));
-            m_adsManager.addEventListener(ima.AdEvent.Type.LOADED,onAdEvent.bind(this));
-            m_adsManager.addEventListener(ima.AdEvent.Type.STARTED,onAdEvent.bind(this));
-            m_adsManager.addEventListener(ima.AdEvent.Type.COMPLETE,onAdEvent.bind(this));
-            m_adsManager.addEventListener(ima.AdEvent.Type.SKIPPED,onAdEvent.bind(this));
-            m_adsManager.addEventListener(ima.AdEvent.Type.USER_CLOSE,onAdEvent.bind(this)); 
+            m_adsManager.addEventListener(ima.AdErrorEvent.Type.AD_ERROR,OnAdError.bind(this));
+            // m_adsManager.addEventListener(ima.AdEvent.Type.CONTENT_PAUSE_REQUESTED,onContentPauseRequested.bind(this)); 控制暂停 好像目前没有用到
+            // m_adsManager.addEventListener(ima.AdEvent.Type.CONTENT_RESUME_REQUESTED,onContentResumeRequested.bind(this)); 控制播放 好像目前没有用到
+            m_adsManager.addEventListener(ima.AdEvent.Type.ALL_ADS_COMPLETED,OnAdEvent.bind(this));
+            m_adsManager.addEventListener(ima.AdEvent.Type.LOADED,OnAdEvent.bind(this));
+            m_adsManager.addEventListener(ima.AdEvent.Type.STARTED,OnAdEvent.bind(this));
+            m_adsManager.addEventListener(ima.AdEvent.Type.COMPLETE,OnAdEvent.bind(this));
+            m_adsManager.addEventListener(ima.AdEvent.Type.SKIPPED,OnAdEvent.bind(this));
+            m_adsManager.addEventListener(ima.AdEvent.Type.USER_CLOSE,OnAdEvent.bind(this)); 
             m_adsManager.init(m_Width, m_Height, window['google'].ima.ViewMode.NORMAL);
             m_adsManager.start();
         }
     }
 
-    function onAdEvent(adEvent) {
+    function OnAdEvent(adEvent) {
         // 从事件检索广告。有些事件（例如 ALL_ADS_COMPLETED）
         // 没有相关联的广告对象。
         let ad = adEvent.getAd();
@@ -260,82 +313,42 @@
             case ima.AdEvent.Type.LOADED:
                 var contentType = ad.data.contentType;
                 var height = ad.data.height;
-                setupUIForAds(contentType, height);
+                SetupUIForAds(contentType, height);
+                OnVideoAdReward(CallBackStatus.CALL_AD_LOADED);
                 break;
             case ima.AdEvent.Type.STARTED:
-                // 此事件表示广告已启动 - 视频播放器
-                // 可以调整用户界面，例如显示暂停按钮和
-                // 剩余时间。
-                // if (ad.isLinear()) {
-                //     // 对于线性广告，可以启动计时器来查看
-                //     // 剩余时间。
-                //     m_intervalTimer = setInterval(() => {
-                //         let remainingTime = m_adsManager.getRemainingTime();
-                //     }, 300); // every 300ms
-                // }
+                OnVideoAdReward(CallBackStatus.CALL_START);
                 break;
             case ima.AdEvent.Type.COMPLETE:
-                // 此事件表示广告已完成 - 视频播放器
-                // 可以执行相应的用户界面操作，例如删除
-                // 剩余时间检测的定时器。
-                // if (ad.isLinear()) {
-                //     clearInterval(m_intervalTimer);
-                // }
-                setupUIForContent('COMPLETE');
+                OnVideoAdReward(CallBackStatus.CALL_SUCCESS);
                 break;
             case  ima.AdEvent.Type.SKIPPED:
-                //在用户跳过广告时触发
-                //console.log("跳过广告");
-                setupUIForContent('SKIPPED');
+                OnVideoAdReward(CallBackStatus.CALL_SKIPPED);
                 break;
             case ima.AdEvent.Type.USER_CLOSE:
-                //用户关闭广告
-                //console.log("关闭广告");
-                setupUIForContent('USER_CLOSE');
+                OnVideoAdReward(CallBackStatus.CALL_CLOSE);
                 break;
             case ima.AdEvent.Type.CLICK:
-                //用户点击广告
+                OnVideoAdReward(CallBackStatus.CALL_AD_CLICK);
                 break;
             case ima.AdErrorEvent.Type.AD_ERROR:
-                //出现错误
-                console.log("AD_ERROR");
-                setupUIForContent('AD_ERROR');
+                OnVideoAdReward(CallBackStatus.CALL_ERROR);
                 break;    
         }
     }
 
-    function onAdError(adErrorEvent) {
-        setupUIForContent(adErrorEvent);
-        // 处理错误日志记录。
-        console.log(adErrorEvent.getError());
+    function OnAdError(adErrorEvent) {
+        OnVideoAdReward(CallBackStatus.CALL_ERROR);
     }
 
-    function onContentPauseRequested() {
-        //videoContent.pause();
-        // 您应该使用此函数设置用户界面来展示广告（例如
-        // 展示广告计时器倒计时、停用搜寻等）
-        setupUIForAds(null,0);
-    }
-
-    function onContentResumeRequested() {
-        //videoContent.play();
-        // 您应该使用此函数确保用户界面已准备好
-        // 播放内容。发布商负责
-        // 在必要时实施此函数。
-        setupUIForContent();
-
-    }
-
-    function setupUIForAds(contentType, height){
-        
+    function SetupUIForAds(contentType, height){
         m_AdContainer.style.backgroundColor = "#f00";
         // 请求image有时会获取到高为60的banner图片，暂时不知如何处理，当作失败对待，防止整屏被banner覆盖不能操作游戏了
         if(contentType != 'text' && height == 60){
-            setupUIForContent();
+            OnVideoAdReward(CallBackStatus.CALL_FALIED);
             return;
         }
         if(contentType == 'text'){
-            console.log(contentType);
             let y =(m_GameDiv.clientHeight - 80)+'px';
             m_AdContainer.height = '63px';
             m_AdContainer.style.top = y;
@@ -346,19 +359,36 @@
         m_AdContainer.style.visibility = 'visible';
     }
 
-    function setupUIForContent(adErrorEvent = null){
-        console.log(" ad over status " + adErrorEvent);
-        // if(preloadedRewardedVideoCallbackObj){
-        //     preloadedRewardedVideoCallbackObj.showRewardedVideoCallback(adErrorEvent);
-        //     preloadedRewardedVideoCallbackObj = null;
-        // }
-        m_AdContainer.style.visibility = 'hidden';
+    /**
+     * 广告奖励回调
+     */
+    function OnVideoAdReward(Status){
         
+        if(m_AdCallback[m_placeId] && Status == CallBackStatus.CALL_SUCCESS)
+        {
+            m_AdCallback[m_placeId](Status);
+            m_AdCallback[m_placeId] = null;
+        }
+
+        
+        
+        m_placeId = "";
+        m_AdContainer.style.visibility = 'hidden';
+        if(m_isShowBanner && !(m_Type == 1))
+        {
+            ShowAd(1);
+        }
+        m_Type = 0;
     }
 
+    // 关闭广告
     function CloseAd(type)
     {
-
+        if((type == 1) && m_Type == type)
+        {
+            m_AdContainer.style.visibility = 'hidden';
+            m_isShowBanner = false;
+        }
     }
 
 </script>
