@@ -125,10 +125,7 @@
         this.adContainerDiv = document.createElement('div');
         this.adContainerDiv.id = 'adContainerDiv';
         this.adContainerDiv.style.position = 'absolute';
-        this.adContainerDiv.style.left = '0px';
-        this.adContainerDiv.style.top = '0px';
-        this.adContainerDiv.style.bottom = '0px';
-        this.adContainerDiv.style.right = '0px';
+
         this.advertiseDiv.appendChild(this.adContainerDiv);
     }
     init();
@@ -142,8 +139,8 @@
             //存在激励视频或插屏时不显示激励视频或插屏
             return;
         }
-        let width = this.advertiseDiv.width;
-        let height = this.advertiseDiv.height;;
+        let width =960
+        let height = 540
         this.mType = type;
         switch(type){
             case 1:
