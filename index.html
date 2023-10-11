@@ -8,7 +8,10 @@
 </head>
 
 <body id = "bodys">
-    
+        <button style="width: 100px; height: 70px; position:absolute;top:0px; z-index: 100;" onclick="videoClick()">视频</button>
+      <button style="width: 100px; height: 70px;position:absolute;top:100px; z-index: 100;" onclick="imageClick()">插屏</button>
+      <button style="width: 100px; height: 70px;position:absolute;top:200px; z-index: 100;" onclick="textClick()">banner</button>
+      <button style="width: 100px; height: 70px;position:absolute;top:300px; z-index: 100;" onclick="CloseClick()">关闭banner</button>
 
 </body>
 
@@ -28,16 +31,12 @@
       //移动端设备
       content.innerHTML += `
 
-      <button style="width: 100px; height: 70px;" onclick="videoClick()">视频</button>
-      <button style="width: 100px; height: 70px;" onclick="imageClick()">插屏</button>
-      <button style="width: 100px; height: 70px;" onclick="textClick()">banner</button>
-      <button style="width: 100px; height: 70px;" onclick="CloseClick()">关闭banner</button>
-     
+      
       <div id="GameDiv"></div>
       `
       includeLinkStyle('style-mobile.css');
       var GameDiv = document.getElementById("GameDiv");
-      GameDiv.style.backgroundColor = "#f00";
+      GameDiv.style.backgroundColor = "#0f0";
       GameDiv.style.position = "relative"
       GameDiv.style.top = 0
       GameDiv.style.left = 0
@@ -403,8 +402,6 @@
 
 </script>
 
-<script type="text/javascript">
-  
-</script>
+
 
 </html>
