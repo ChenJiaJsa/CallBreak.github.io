@@ -314,10 +314,10 @@
                 var contentType = ad.data.contentType;
                 var height = ad.data.height;
                 SetupUIForAds(contentType, height);
-                OnVideoAdReward(CallBackStatus.CALL_AD_LOADED);
+                //OnVideoAdReward(CallBackStatus.CALL_AD_LOADED);
                 break;
             case ima.AdEvent.Type.STARTED:
-                OnVideoAdReward(CallBackStatus.CALL_START);
+                //OnVideoAdReward(CallBackStatus.CALL_START);
                 break;
             case ima.AdEvent.Type.COMPLETE:
                 OnVideoAdReward(CallBackStatus.CALL_SUCCESS);
@@ -329,16 +329,16 @@
                 OnVideoAdReward(CallBackStatus.CALL_CLOSE);
                 break;
             case ima.AdEvent.Type.CLICK:
-                OnVideoAdReward(CallBackStatus.CALL_AD_CLICK);
+                //OnVideoAdReward(CallBackStatus.CALL_AD_CLICK);
                 break;
             case ima.AdErrorEvent.Type.AD_ERROR:
-                OnVideoAdReward(CallBackStatus.CALL_ERROR);
+                //OnVideoAdReward(CallBackStatus.CALL_ERROR);
                 break;    
         }
     }
 
     function OnAdError(adErrorEvent) {
-        OnVideoAdReward(CallBackStatus.CALL_ERROR);
+        OnVideoAdReward(CallBackStatus.CALL_FALIED);
     }
 
     function SetupUIForAds(contentType, height){
