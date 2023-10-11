@@ -8,10 +8,10 @@
 </head>
 
 <body id = "bodys">
-    <button style="width: 100px; height: 70px;" onclick="videoClick()">视频</button>
+<!--     <button style="width: 100px; height: 70px;" onclick="videoClick()">视频</button>
     <button style="width: 100px; height: 70px;" onclick="imageClick()">插屏</button>
     <button style="width: 100px; height: 70px;" onclick="textClick()">banner</button>
-    <button style="width: 100px; height: 70px;" onclick="CloseClick()">关闭banner</button>
+    <button style="width: 100px; height: 70px;" onclick="CloseClick()">关闭banner</button> -->
 
 </body>
 
@@ -29,7 +29,12 @@
     if(/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) 
     {
       //移动端设备
-      content.innerHTML += `<canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="0"></canvas>
+      content.innerHTML += `
+      <button style="width: 100px; height: 70px;" onclick="videoClick()">视频</button>
+    <button style="width: 100px; height: 70px;" onclick="imageClick()">插屏</button>
+    <button style="width: 100px; height: 70px;" onclick="textClick()">banner</button>
+    <button style="width: 100px; height: 70px;" onclick="CloseClick()">关闭banner</button>
+      <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="0"></canvas>
       <div id="splash">
         <div class="progress-bar stripes">
           <span style="width: 0%"></span>
