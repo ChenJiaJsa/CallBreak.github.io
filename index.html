@@ -218,13 +218,13 @@
         let adsRequest = new google.ima.AdsRequest();
         adsRequest.adTagUrl = this.adTagUrl;
 
-        // 指定线性和非线性广告位的尺寸。如果返回多个广告，这有助于 SDK
-        // 选择正确的广告。
-        adsRequest.linearAdSlotWidth = this.linearAdSlotWidth;
-        adsRequest.linearAdSlotHeight = this.linearAdSlotHeight;
+        let width = this.advertiseDiv.width;
+        let height = this.advertiseDiv.height;;
+        adsRequest.linearAdSlotWidth = width;
+        adsRequest.linearAdSlotHeight = height;
 
-        adsRequest.nonLinearAdSlotWidth = this.nonLinearAdSlotWidth;
-        adsRequest.nonLinearAdSlotHeight = this.nonLinearAdSlotHeight;
+        adsRequest.nonLinearAdSlotWidth = width;
+        adsRequest.nonLinearAdSlotHeight = height;
 
         // 强制使图片/文字广告以全幅界面展示
         //adsRequest.forceNonLinearFullSlot = true;
