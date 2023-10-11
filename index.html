@@ -8,27 +8,15 @@
 </head>
 
 <body id = "bodys">
-    <div id="GameDiv" style="width:960px; height: 540px; background-color: #000;">
-    <canvas id="GameCanvas" width="500" height="888"></canvas>
-    <div id="splash">
-      <div class="progress-bar stripes">
-        <span style="width: 0%"></span>
-      </div>
-    </div>
-  </div>
-  
     <button style="width: 100px; height: 70px;" onclick="videoClick()">视频</button>
     <button style="width: 100px; height: 70px;" onclick="imageClick()">插屏</button>
     <button style="width: 100px; height: 70px;" onclick="textClick()">banner</button>
-    
+
     
 </body>
 
-<!-- <script type="text/javascript" charset="utf-8">
+<script type="text/javascript" charset="utf-8">
     //向head标签添加link标签
-    var canvasW = 960;
-    var canvasH = 540;
-
     function includeLinkStyle(url) {
       var link = document.createElement("link");
       link.rel = "stylesheet";
@@ -50,6 +38,8 @@
       includeLinkStyle('style-mobile.css')
     } else 
     {
+        var canvasW = 960;
+        var canvasH = 540;
       //pc端
       content.innerHTML +=`<div id="GameDiv">
           <button id="googleBtn">
@@ -87,20 +77,26 @@
       window.open("https://callbreak.sng.link/D7jwm/rb92");
     }
 </script>
- -->
+
 
 
 <script type="text/javascript" charset="utf-8">
+    var AdContainer = null;
+    var CurrAd = null;
+    var GameDiv = null;
+
     function videoClick(){
       show(3);
     }
 
     function imageClick(){
       show(2);
+
     }
 
     function textClick(){
       show(1);
+
     }
 
     function init() {
@@ -108,34 +104,35 @@
         let googletag = window['googletag'];
         googletag.cmd = googletag.cmd || [];
 
-        this.advertiseDiv = document.getElementById('advertise');
-        if (this.advertiseDiv == null) {
-            this.advertiseDiv = document.createElement('div');
-            this.advertiseDiv.id = 'advertise';
-            this.advertiseDiv.style.border = '0';
-            this.advertiseDiv.style.position = 'absolute';
-            this.advertiseDiv.style.left = '0';
-            this.advertiseDiv.style.right = '0';
-            this.advertiseDiv.style.top = '0';
-            this.advertiseDiv.style.bottom = '0';
-            this.advertiseDiv.style.visibility = 'hidden';
+        // 创建广告容器
+        AdContainer = document.getElementById('AdContainer');
+        if (AdContainer == null) {
+            AdContainer = document.createElement('div');
+            AdContainer.id = 'AdContainer';
+            AdContainer.style.border = '0';
+            AdContainer.style.position = 'absolute';
+            AdContainer.style.left = '0';
+            AdContainer.style.right = '0';
+            AdContainer.style.top = '0';
+            AdContainer.style.bottom = '0';
+            AdContainer.style.visibility = 'hidden';
 
-            let gameDiv = document.getElementById('GameDiv');//GameDiv content
-            gameDiv.appendChild(this.advertiseDiv);
+            GameDiv = document.getElementById('GameDiv');
+            GameDiv.appendChild(AdContainer);
         }
 
-        this.videoContent = document.createElement('video');
-        let contentDiv = document.createElement('div');
-        contentDiv.id = 'contentDiv';
-        contentDiv.style.display = 'none';
-        contentDiv.appendChild(this.videoContent);
-        this.advertiseDiv.appendChild(contentDiv);
+        // this.videoContent = document.createElement('video');
+        // let contentDiv = document.createElement('div');
+        // contentDiv.id = 'contentDiv';
+        // contentDiv.style.display = 'none';
+        // contentDiv.appendChild(this.videoContent);
+        // AdContainer.appendChild(contentDiv);
 
-        this.adContainerDiv = document.createElement('div');
-        this.adContainerDiv.id = 'adContainerDiv';
-        this.adContainerDiv.style.position = 'absolute';
+        // this.adContainerDiv = document.createElement('div');
+        // this.adContainerDiv.id = 'adContainerDiv';
+        // this.adContainerDiv.style.position = 'absolute';
 
-        this.advertiseDiv.appendChild(this.adContainerDiv);
+        // AdContainer.appendChild(this.adContainerDiv);
     }
     init();
     
@@ -154,11 +151,11 @@
         switch(type){
             case 1:
                 this.adTagUrl = "https://googleads.g.doubleclick.net/pagead/ads?ad_type=text&client=ca-games-pub-6877195875453822&description_url=https%3A%2F%2Fcb1.callbreakmaster.fun%2Fh5%2Fcb1%2Findex.html&videoad_start_delay=0&max_ad_duration=30000"
-                this.advertiseDiv.style.backgroundColor = 'transparent';
+                AdContainer.style.backgroundColor = 'transparent';
                 height = 64;
                 break;
             case 2:
-                this.advertiseDiv.style.backgroundColor = '#000';
+                AdContainer.style.backgroundColor = '#000';
                 this.adTagUrl = "https://googleads.g.doubleclick.net/pagead/ads?ad_type=image&client=ca-games-pub-6877195875453822&description_url=https%3A%2F%2Fcb1.callbreakmaster.fun%2Fh5%2Fcb1%2Findex.html&videoad_start_delay=0&max_ad_duration=30000"
                 break;
             case 3:
@@ -182,34 +179,35 @@
             this.nonLinearAdSlotWidth = width;
             this.nonLinearAdSlotHeight = 90; 
         }
-        // if(this.scheduleTimer) clearInterval(this.scheduleTimer);
-        // this.scheduleTimer = setInterval(() => {
-        //     clearInterval(this.scheduleTimer);
-            if (window['google']) 
-            {
-                // 开始提出广告请求
-                this.requestAds();
-            }else{
-                this.setupUIForContent();
-            }
+      
+        
+        
+
+
+        if (window['google']) 
+        {
+            // 开始提出广告请求
+            this.requestAds();
+        }else{
+            this.setupUIForContent();
+        }
            
-        // }, 1000);
+   
     }
 
     function requestAds() {
         // 创建广告显示容器。
         // 我们假设 adContainer 是
         // 将要容纳广告的元素的 DOM ID。
-        if(this.adDisplayContainer) this.adDisplayContainer.destroy();
-        this.adContainerDiv.innerHTML = '';
-        this.adDisplayContainer =
-            new google.ima.AdDisplayContainer(this.adContainerDiv);
+        if(CurrAd) CurrAd.destroy();
+        AdContainer.innerHTML = '';
+        CurrAd = new google.ima.AdDisplayContainer(AdContainer);
 
         // 如果 requestAds 在用户操作过程中调用，则初始化容器。
         // 仅在 iOS/Android 设备上需要此操作。
-        this.adDisplayContainer.initialize();
+        CurrAd.initialize();
         // 创建广告加载器。
-        this.adsLoader = new google.ima.AdsLoader(this.adDisplayContainer);
+        this.adsLoader = new google.ima.AdsLoader(CurrAd);
         // 监听并响应已加载的广告和错误事件。
         this.adsLoader.addEventListener(
             google.ima.AdsManagerLoadedEvent.Type.ADS_MANAGER_LOADED,
@@ -224,11 +222,10 @@
         let adsRequest = new google.ima.AdsRequest();
         adsRequest.adTagUrl = this.adTagUrl;
 
-        let width = this.adContainerDiv.clientWidth;
-        let height = this.adContainerDiv.clientHeight;;
+        let width = AdContainer.clientWidth;
+        let height = AdContainer.clientHeight;;
         adsRequest.linearAdSlotWidth = width;
         adsRequest.linearAdSlotHeight = height;
-
         adsRequest.nonLinearAdSlotWidth = width;
         adsRequest.nonLinearAdSlotHeight = height;
 
@@ -240,9 +237,7 @@
 
     function onAdsManagerLoaded(adsManagerLoadedEvent) {
         // 获取广告管理器。
-        this.adsManager = adsManagerLoadedEvent.getAdsManager(
-            this.videoContent);  // 应被设置为内容视频元素
-
+        this.adsManager = adsManagerLoadedEvent.getAdsManager(AdContainer);  // 应被设置为内容视频元素
         // 为所需事件添加监听器。
         this.adsManager.addEventListener(
             google.ima.AdErrorEvent.Type.AD_ERROR,
@@ -281,6 +276,9 @@
             this.adsManager.start();
         } catch (adError) {
             // 如果 VAST 响应存在问题，可能会引发错误。
+            console.log("VAST 响应存在问题>>>>>>")
+            console.log(adError);
+            console.log("VAST 响应存在问题>>>>>>")
         }
     }
 
@@ -350,6 +348,20 @@
 
     function onAdError(adErrorEvent) {
         this.setupUIForContent(adErrorEvent);
+        switch(adErrorEvent)
+        {
+            case 1:
+                setupUIForAds("text");
+                break;
+            case 2:
+                setupUIForAds("image");
+                break;
+            case 3:
+                setupUIForAds("video");
+                break;
+        }
+
+        
         // 处理错误日志记录。
         console.log(adErrorEvent.getError());
     }
@@ -372,31 +384,29 @@
 
     function setupUIForAds(contentType, height){
         // 请求image有时会获取到高为60的banner图片，暂时不知如何处理，当作失败对待，防止整屏被banner覆盖不能操作游戏了
+        AdContainer.style.backgroundColor = "#f00";
         if(contentType != 'text' && height == 60){
             this.setupUIForContent();
             return;
         }
-        if(contentType == 'text'){
-            console.log(contentType);
-            let x ='960px'
-            this.advertiseDiv.style.height = '63px';
-            this.advertiseDiv.style.width = x ;
-            let y =(540 - 80)+'px'
-            this.advertiseDiv.style.top = y;
+        if(contentType == 'text')
+        {
+            let y =(GameDiv.clientHeight - 80)+'px'
+            AdContainer.height = '63px';
+            AdContainer.style.top = y;
         }else{
-            this.advertiseDiv.style.height = '';
-            this.advertiseDiv.style.top = '0';
+            AdContainer.style.top = 0;
+           AdContainer.height = GameDiv.clientHeight;
         }
-        this.advertiseDiv.style.visibility = 'visible';
+        AdContainer.style.visibility = 'visible';
     }
 
     function setupUIForContent(adErrorEvent){
-        console.log(" ad over status " + adErrorEvent);
         if(this.preloadedRewardedVideoCallbackObj){
             this.preloadedRewardedVideoCallbackObj.showRewardedVideoCallback(adErrorEvent);
             this.preloadedRewardedVideoCallbackObj = null;
         }
-        this.advertiseDiv.style.visibility = 'hidden';
+        AdContainer.style.visibility = 'hidden';
         if(adErrorEvent && this.mType > 0){
             this.show(1);
         }
