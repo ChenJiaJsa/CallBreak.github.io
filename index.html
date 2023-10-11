@@ -346,6 +346,8 @@
 
     function OnAdError(adErrorEvent) {
         OnVideoAdReward(CallBackStatus.CALL_FALIED);
+      console.log("广告失败")  
+      console.log(adErrorEvent)
     }
 
     function SetupUIForAds(contentType, height){
@@ -370,7 +372,7 @@
      * 广告奖励回调
      */
     function OnVideoAdReward(Status){
-        
+        console.log(`m_Type>>>${m_Type}>>>>>Status>>${Status}`)
         if(m_AdCallback[m_placeId] && Status == CallBackStatus.CALL_SUCCESS)
         {
             m_AdCallback[m_placeId](Status);
