@@ -8,10 +8,7 @@
 </head>
 
 <body id = "bodys">
-<!--     <button style="width: 100px; height: 70px;" onclick="videoClick()">视频</button>
-    <button style="width: 100px; height: 70px;" onclick="imageClick()">插屏</button>
-    <button style="width: 100px; height: 70px;" onclick="textClick()">banner</button>
-    <button style="width: 100px; height: 70px;" onclick="CloseClick()">关闭banner</button> -->
+    
 
 </body>
 
@@ -28,31 +25,34 @@
     var content = document.getElementById("bodys");
     if(/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) 
     {
-       //移动端设备
-       content.innerHTML += `
+      //移动端设备
+      content.innerHTML += `
+      <div id="GameDiv">
+        <div id = "chi"></div>
+      </div>
       <button style="width: 100px; height: 70px;" onclick="videoClick()">视频</button>
       <button style="width: 100px; height: 70px;" onclick="imageClick()">插屏</button>
       <button style="width: 100px; height: 70px;" onclick="textClick()">banner</button>
       <button style="width: 100px; height: 70px;" onclick="CloseClick()">关闭banner</button>
-      <div id="GameDiv">
-          <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="0"></canvas>
-          <div id="splash">
-            <div class="progress-bar stripes">
-              <span style="width: 0%"></span>
-            </div>
-          </div>
-      </div>
+     
+      
       `
       includeLinkStyle('style-mobile.css');
-      var GameDiv = document.getElementById("GameDiv");
-      GameDiv.style.top = (document.documentElement.clientHeight) / 2 + "px";
-      GameDiv.style.left = (document.documentElement.clientWidth) / 2 + "px";
+        // var chi = document.getElementById("chi");
+        // chi.style.width=document.documentElement.clientWidth;
+        // chi.style.height=document.documentElement.clientHeight;
+      
+          var GameDiv = document.getElementById("GameDiv");
+          GameDiv.style.backgroundColor = "#f00";
+          GameDiv.style.top = 0
+          GameDiv.style.left = 0
     } else 
     {
         var canvasW = 960;
         var canvasH = 540;
       //pc端
-      content.innerHTML +=`<div id="GameDiv">
+      content.innerHTML +=`
+      <div id="GameDiv">
           <button id="googleBtn">
             <img src="./icon_google2.png" style="width:310px">
           </button>
@@ -274,14 +274,14 @@
         let adsRequest = new window['google'].ima.AdsRequest();
         adsRequest.adTagUrl = m_adTagUrl;
 
-        m_Width = m_GameDiv.clientWidth;
-        m_Height = m_GameDiv.clientHeight;
+        m_Width = m_AdContainer.clientWidth;
+        m_Height = m_AdContainer.clientHeight;
         // 设置广告尺寸 除了banner外 其他广告应该全屏
         adsRequest.linearAdSlotWidth = m_Width
         adsRequest.linearAdSlotHeight = m_Height
         adsRequest.nonLinearAdSlotWidth = m_Width
         adsRequest.nonLinearAdSlotHeight =  m_Height
-        m_Height = m_GameDiv.clientHeight;
+        m_Height = m_AdContainer.clientHeight;
         if(m_Type == 1)
         {
             adsRequest.linearAdSlotHeight = 90;
@@ -360,12 +360,12 @@
             return;
         }
         if(contentType == 'text'){
-            let y =(m_GameDiv.clientHeight - 80)+'px';
+            let y =(m_AdContainer.clientHeight - 80)+'px';
             m_AdContainer.height = '63px';
             m_AdContainer.style.top = y;
         }else{
             m_AdContainer.style.top = 0;
-            m_AdContainer.height = m_GameDiv.clientHeight;
+            m_AdContainer.height = m_AdContainer.clientHeight;
         }
         m_AdContainer.style.visibility = 'visible';
     }
