@@ -293,9 +293,10 @@
                 
                 console.log("===========");
                 console.log(ad);
-                console.log('ad.g.contentType:' + ad.h.contentType);
-                var contentType = ad.h.contentType;
-                var height = ad.h.height;
+                console.log('ad.g.contentType:' + ad.data.contentType);
+                console.log("===========");
+                var contentType = ad.data.contentType;
+                var height = ad.data.height;
 
                 this.setupUIForAds(contentType, height);
                 break;
