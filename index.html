@@ -29,29 +29,24 @@
     if(/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) 
     {
        //移动端设备
-       //移动端设备
-      content.innerHTML += `
+       content.innerHTML += `
       <button style="width: 100px; height: 70px;" onclick="videoClick()">视频</button>
       <button style="width: 100px; height: 70px;" onclick="imageClick()">插屏</button>
       <button style="width: 100px; height: 70px;" onclick="textClick()">banner</button>
       <button style="width: 100px; height: 70px;" onclick="CloseClick()">关闭banner</button>
-      <div id="GameDiv"></div>
+      <div id="GameDiv">
+          <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="0"></canvas>
+          <div id="splash">
+            <div class="progress-bar stripes">
+              <span style="width: 0%"></span>
+            </div>
+          </div>
+      </div>
       `
-      // <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="0"></canvas>
-      // <div id="splash">
-      //   <div class="progress-bar stripes">
-      //     <span style="width: 0%"></span>
-      //   </div>
-      // </div>
       includeLinkStyle('style-mobile.css');
-      
       var GameDiv = document.getElementById("GameDiv");
-      GameDiv.style.position = "relative";
-      GameDiv.style.width = document.documentElement.clientWidth;
-      GameDiv.style.height = document.documentElement.clientHeight;
-      
-      GameDiv.style.top = (document.documentElement.clientHeight - canvasH) / 2 + "px";
-      GameDiv.style.left = (document.documentElement.clientWidth - canvasW) / 2 + "px";
+      GameDiv.style.top = (document.documentElement.clientHeight) / 2 + "px";
+      GameDiv.style.left = (document.documentElement.clientWidth) / 2 + "px";
     } else 
     {
         var canvasW = 960;
