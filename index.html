@@ -8,14 +8,23 @@
 </head>
 
 <body id = "bodys">
+    <div id="GameDiv" style="width:960px; height: 540px; background-color: #000;">
+    <canvas id="GameCanvas" width="500" height="888"></canvas>
+    <div id="splash">
+      <div class="progress-bar stripes">
+        <span style="width: 0%"></span>
+      </div>
+    </div>
+  </div>
+  
     <button style="width: 100px; height: 70px;" onclick="videoClick()">视频</button>
     <button style="width: 100px; height: 70px;" onclick="imageClick()">插屏</button>
     <button style="width: 100px; height: 70px;" onclick="textClick()">banner</button>
-
+    
     
 </body>
 
-<script type="text/javascript" charset="utf-8">
+<!-- <script type="text/javascript" charset="utf-8">
     //向head标签添加link标签
     var canvasW = 960;
     var canvasH = 540;
@@ -78,7 +87,7 @@
       window.open("https://callbreak.sng.link/D7jwm/rb92");
     }
 </script>
-
+ -->
 
 
 <script type="text/javascript" charset="utf-8">
