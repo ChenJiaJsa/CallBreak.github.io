@@ -218,8 +218,8 @@
         let adsRequest = new google.ima.AdsRequest();
         adsRequest.adTagUrl = this.adTagUrl;
 
-        let width = this.advertiseDiv.width;
-        let height = this.advertiseDiv.height;;
+        let width = this.adContainerDiv.clientWidth;
+        let height = this.adContainerDiv.clientHeight;;
         adsRequest.linearAdSlotWidth = width;
         adsRequest.linearAdSlotHeight = height;
 
