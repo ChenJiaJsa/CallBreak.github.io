@@ -133,7 +133,7 @@
 
     function CloseClick()
     {
-        CloseAd()
+        CloseAd(1)
     }
 
     var VideoUrl = "https://googleads.g.doubleclick.net/pagead/ads?ad_type=video&client=ca-games-pub-6877195875453822&description_url=https%3A%2F%2Fcb1.callbreakmaster.fun%2Fh5%2Fcb1%2Findex.html&videoad_start_delay=0&max_ad_duration=30000"
@@ -376,7 +376,9 @@
         m_AdContainer.style.visibility = 'hidden';
         if(m_isShowBanner && !(m_Type == 1))
         {
+            m_Type = 0;
             ShowAd(1);
+            return;
         }
         m_Type = 0;
     }
